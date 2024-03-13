@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smile Capture</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/smile_capture.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Smile for the Camera!</h1>
+        <div class="video-container">
+            <video id="video" autoplay></video>
+        </div>
+        <button id="snapBtn" class="capture-btn">Capture Image</button>
+        <div class="image-container">
+            <img id="capturedImage" alt="Captured Image">
+        </div>
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close-btn">&times;</span>
+                <p class="popup-text">Wow! What a great photo!</p>
+            </div>
+        </div>
+        <a href="/personal_details" class="next-btn">Next</a>
+        <canvas id="canvas" class="canvas" width="640" height="480"></canvas>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
