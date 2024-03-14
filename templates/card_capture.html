@@ -6,36 +6,170 @@
     <title>Aadhar and PAN Card Capture</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/card_capture.css') }}">
+    <style>
+        /* Styling for the loader and background overlay */
+        #loader-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+            z-index: 9999; /* Ensure it's on top of everything */
+            text-align: center;
+        }
+
+        #loader-text {
+            color: white;
+            font-size: 24px;
+            margin-top: 20%;
+        }
+
+        #loader {
+            position: relative;
+            top: 10%;
+            padding-right: 40px;
+            transform: translateY(-50%);
+            z-index: 10000; /* Ensure it's on top of the overlay */
+        }
+
+        /* Rest of your styling */
+        .centered {
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 50%;
+            left: 37.2%;
+            transform: translate(-50%, -50%);
+            filter: blur(5px) contrast(40);
+        }
+
+        .blob-1, .blob-2 {
+            width: 70px;
+            height: 70px;
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .blob-1 {
+            left: 20%;
+            animation: osc-l 2.5s ease infinite;
+            background: rgb(4, 234, 19);
+        }
+
+        .blob-2 {
+            left: 80%;
+            animation: osc-r 2.5s ease infinite;
+            background: rgb(40, 27, 231);
+        }
+
+        @keyframes osc-l {
+            0% {
+                left: 20%;
+            }
+
+            50% {
+                left: 50%;
+            }
+
+            100% {
+                left: 20%;
+            }
+        }
+
+        @keyframes osc-r {
+            0% {
+                left: 80%;
+            }
+
+            50% {
+                left: 50%;
+            }
+
+            100% {
+                left: 80%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="title">Upload Your Aadhar and PAN Card</h1>
-        <div class="card-container">
-            <div class="card">
-                <h2>Aadhar Card</h2>
-                <input type="text" id="aadharNumber" placeholder="Enter Aadhar Number" class="input-field">
-                <div class="image-container">
-                    <video id="aadharVideo" autoplay></video>
-                </div>
-                <button id="aadharCaptureBtn" class="capture-btn">Capture Aadhar</button>
-            </div>
-            <div class="card">
-                <h2>PAN Card</h2>
-                <input type="text" id="panNumber" placeholder="Enter PAN Number" class="input-field">
-                <div class="image-container">
-                    <video id="panVideo" autoplay></video>
-                </div>
-                <button id="panCaptureBtn" class="capture-btn">Capture PAN</button>
-            </div>
-        </div>
-        <div id="popup" class="popup">
-            <div class="popup-content">
-                <span class="close-btn">&times;</span>
-                <p class="popup-text">Wow! You did it!</p>
-            </div>
-        </div>
-        <a href="/thank_you" class="btn">Submit</a>
+<div id="loader-container">
+    <div id="loader-text">Processing Your Data!</div>
+    <div id="loader" class="centered">
+        <div class="blob-1"></div>
+        <div class="blob-2"></div>
     </div>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</div>
+<div class="container">
+    <h1 class="title">Upload Your Aadhar and PAN Card</h1>
+    <div class="card-container">
+        <div class="card">
+            <h2>Aadhar Card</h2>
+            <input type="text" id="aadharNumber" placeholder="Enter Aadhar Number" class="input-field">
+            <div class="image-container">
+                <video id="aadharVideo" autoplay></video>
+            </div>
+            <button id="aadharCaptureBtn" class="capture-btn">Capture Aadhar</button>
+        </div>
+        <div class="card">
+            <h2>PAN Card</h2>
+            <input type="text" id="panNumber" placeholder="Enter PAN Number" class="input-field">
+            <div class="image-container">
+                <video id="panVideo" autoplay></video>
+            </div>
+            <button id="panCaptureBtn" class="capture-btn">Capture PAN</button>
+        </div>
+    </div>
+    <div class="signature-container">
+        <div class="card">
+            <h2>Signature</h2>
+            <input type="file" id="signatureFile" accept=".pdf" class="input-field" required>
+        </div>
+    </div>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <p class="popup-text">Wow! You did it!</p>
+        </div>
+    </div>
+    <button id="submitBtn" class="btn">Submit</button>
+</div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script>
+    // Wait for the page to load
+    document.addEventListener("DOMContentLoaded", function () {
+        // Function to show loader and navigate after delay
+        function showLoaderAndNavigate() {
+            // Show the loader container
+            document.getElementById('loader-container').style.display = 'block';
+            // Change loader text to "Processing Your Data!"
+            document.getElementById('loader-text').innerText = 'Processing Your Data!';
+            // Hide the loader and navigate after 3 seconds
+            setTimeout(function () {
+                // Change loader text to "Done!"
+                document.getElementById('loader-text').innerText = 'Done!';
+                // Navigate to the thank you page after 1 second
+                setTimeout(function () {
+                    window.location.href = "/thank_you";
+                }, 1000);
+            }, 3000); // 3000 milliseconds = 3 seconds
+        }
+
+        // Handle button click to submit form
+        document.getElementById('submitBtn').addEventListener('click', function (event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+            // Call the function to show loader and navigate
+            showLoaderAndNavigate();
+        });
+    });
+</script>
+
+
 </body>
 </html>

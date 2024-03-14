@@ -46,6 +46,18 @@
     transition: border-color 0.3s ease;
 }
 
+.signature-container {
+    text-align: center;
+    padding-left: 235px;
+    width: 30%;
+    height: 50%;
+}
+
+.signature-container .card {
+    
+    width: 100%;
+}
+
 .input-field:focus {
     border-color: #007bff;
 }

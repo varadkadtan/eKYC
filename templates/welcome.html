@@ -5,11 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to eKYC</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .container {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .info-box {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .info-box h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .info-box p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+        }
+
+        .btn {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .checkbox-label {
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>Welcome to eKYC</h1>
         <p>We're excited to have you on board for a seamless KYC experience!</p>
+
+        <div class="info-box">
+            <h2>What is eKYC?</h2>
+            <p>eKYC stands for Electronic Know Your Customer. It's a quick and convenient way to verify your identity using digital methods.</p>
+            <p>Here's what you need to know:</p>
+            <ul>
+                <li>Your camera will be turned on throughout the process for facial recognition.</li>
+                <li>Your screen will be recorded to ensure the integrity of the process.</li>
+                <li>Make sure you have your Aadhar Card and PAN Card ready for verification.</li>
+            </ul>
+            <div class="checkbox-label">
+                <input type="checkbox" id="agreeCheckbox">
+                <label for="agreeCheckbox">I agree to the terms and conditions</label>
+            </div>
+        </div>
+
         <a href="/smile" class="btn">Get Started</a>
     </div>
 </body>
