@@ -1,4 +1,4 @@
-# eKYC Web Application
+# eKYC WebApp by Team Bhagwa for SC Hackathon
 
 Welcome to eKYC, an electronic Know Your Customer application for seamless identity verification.
 
@@ -13,13 +13,16 @@ eKYC is a web application designed to simplify the process of identity verificat
 - Record facial recognition for identity validation.
 - Seamless and secure verification process.
 
-## Demo
+## Video
 
 Watch the video below to see how eKYC works:
 
-[![eKYC Demo](https://img.youtube.com/vi/hY_9HyBCwbs/0.jpg)](https://www.youtube.com/watch?v=hY_9HyBCwbs)
 
-Click on the image to watch the video.
+https://github.com/varadkadtan/eKYC/assets/103556886/a7356fb6-14d7-4585-a5ac-6e65fe5f0572
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+
+https://github.com/varadkadtan/eKYC/assets/103556886/a7356fb6-14d7-4585-a5ac-6e65fe5f0572
+
