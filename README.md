@@ -24,5 +24,3 @@ https://github.com/varadkadtan/eKYC/assets/103556886/a7356fb6-14d7-4585-a5ac-6e6
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 
-https://github.com/varadkadtan/eKYC/assets/103556886/a7356fb6-14d7-4585-a5ac-6e65fe5f0572
-
